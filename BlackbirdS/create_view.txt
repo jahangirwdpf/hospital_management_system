@@ -1,0 +1,34 @@
+
+//Create_view (Prescription for patient)
+---------------------------------------------------------------------------------------------
+CREATE VIEW prescription_pat AS
+SELECT doctor.username,appointment.app_id,appointment.appDate,appointment.appTime,prescription.disease,prescription.prescription
+FROM doctor,appointment,prescription
+WHERE appointment.app_id=prescription.id=doctor.id;
+
+
+
+//Create_view (Prescription for Doctor)
+---------------------------------------------------------------------------------------------
+CREATE VIEW prescription_doc AS
+SELECT patient.pat_id,patient.username,appointment.app_id,appointment.appDate,appointment.appTime,prescription.disease,prescription.prescription
+FROM patient,appointment,prescription
+WHERE appointment.app_id=prescription.id=patient.pat_id;
+
+
+
+//Create_view (Appointment for Patient)
+---------------------------------------------------------------------------------------------
+CREATE VIEW prescription_pat AS
+SELECT doctor.username,doctor.doctorFees,appointment.appDate,appointment.appTime
+FROM doctor,appointment
+WHERE appointment.app_id=doctor.id;
+
+
+
+//Create_view (Appointment for Doctor)
+---------------------------------------------------------------------------------------------
+CREATE VIEW prescription_doc AS
+SELECT appointment.app_id,patient.pat_id,patient.username,patient.gender,appointment.appDate,appointment.appTime
+FROM patient,appointment
+WHERE appointment.app_id=patient.pat_id;

@@ -1,0 +1,122 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    outline: 0px;
+}
+img {
+    border: 0px;
+}
+.img2{
+    width: 80px;
+    text-align: center;
+    margin-left: 30px;
+}
+
+.navbar-brand{
+    color: #fff;
+}
+.navbar-toggler{
+    color: #fff;
+    background: #fff;
+}
+
+hr{
+    color: #fff;
+    padding: 0;
+    margin: 0;   
+}
+
+ul,
+ol {
+    list-style-type: none;
+
+}
+
+p {
+    margin: 0px;
+    padding: 0px;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+a:hover {
+    color: yellow;
+}
+
+.clr {
+    clear: both;
+}
+
+@font-face {
+    font-family: Ubuntu;
+    src: url(../fonts/Ubuntu-Regular.ttf);
+}
+
+body {
+    font-family: 'Ubuntu', sans-serif;
+    overflow-x: hidden;
+}
+
+/*header part code start*/
+.navbar{
+    background-color: #052d61;
+}
+
+li {
+    color: #fff;
+    vertical-align: middle;
+}
+
+.user {
+    text-align: end;
+    /* padding: 0px 30px 0px 30px; */
+}
+
+.user-btn {
+    border: none !important;
+}
+
+.user-btn img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+.dropdown-menu{
+    background-color: #507FCF;
+}
+
+.sidebar{
+    background-color: #507FCF;
+}
+.custom .accordion-button::after {
+    height: 0;
+    width: 0;
+    color: #fff;
+}
+.accordion-button:hover {
+    color: yellow;
+}
+.main-content{
+    background-color: #fff;
+}
+
+.accordion {
+    /* sub sidebar text color*/
+    --bs-accordion-btn-color: #fff;
+    /* sub category text color*/
+    --bs-accordion-color: #052d61;
+    /*sub category Sidebar bg color*/
+    --bs-accordion-bg: #052d61;
+    /*Sidebar bg color*/
+    --bs-accordion-btn-bg: #507FCF;
+    /*Sidebar active bg color*/
+    --bs-accordion-active-bg: #507FCF;
+}
+/* footer */
+.ftr{
+    background-color: #052d61;
+    color: #fff;
+    text-align: center;
+}

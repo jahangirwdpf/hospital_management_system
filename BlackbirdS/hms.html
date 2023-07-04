@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <!-- start Headder -->
+        <div class="container-fluid">
+            <div class="col-md-2"><h1 class="navbar-brand"> BlackBirdS</h1></div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="col-md-10 ">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-center">
+                        <li class="nav-item">
+                            <h3>Hospital Management SysteM</h3>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <div class="dropdown user">
+                        <button class="btn user-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="img/smj.jpg" class="img-fluid">
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-item"><a class="dropdown-link" href="#"><i class="fas fa-user-tie"></i>
+                                My Profile</a></li>
+                            <li class="dropdown-item"><a class="dropdown-link" href="#"><i class="fas fa-cog"></i>
+                                Manage Account</a></li>
+                            <li class="dropdown-item"><a class="dropdown-link" href="#"><i
+                                class="fas fa-sign-out-alt"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- End Headder -->
+
+    <!-- start Sidebar -->
+    <div class="col-md-12 gx-0 vh-100">
+        <div class="row">
+            <div class="sidebar col-md-2 px-0">
+                <div class="accordion accordion-flush" id="accordionFlushExample">
+                    <div class="accordion-item custom">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapse1" aria-expanded="false" aria-controls="flush-collapse1">
+                            <img src="img/logo.png" alt="logo" class="img2">
+                        </button>
+                    </div>
+
+                    <div class="accordion-item custom">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapse2" aria-expanded="false" aria-controls="flush-collapse2">
+                            <i class="fas fa-desktop fa-lg"><strong> Dashboard</strong></i>
+                        </button>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapse3" aria-expanded="false" aria-controls="flush-collapse3">
+                            <i class="fas fa-user-md fa-lg">  Doctors</i>
+                        </button>
+                        <div id="flush-collapse3" class="accordion-collapse collapse"
+                            data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body"><a href="#">Add Doctors</a></div><hr class="hr hr-blurry g-0"/>
+                            <div class="accordion-body"><a href="#">Manage Doctor</a></div><hr class="hr hr-blurry"/>
+                            <div class="accordion-body"><a href="#">Doctor List</a></div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapse4" aria-expanded="false" aria-controls="flush-collapse4">
+                            <i class="fas fa-users fa-lg"> Patientas</i>
+                        </button>
+                        <div id="flush-collapse4" class="accordion-collapse collapse"
+                            data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body"><a href="#">Add Patient</a></div><hr class="hr hr-blurry"/>
+                            <div class="accordion-body"><a href="#">Manage Patient</a></div><hr class="hr hr-blurry"/>
+                            <div class="accordion-body"><a href="#">Patient List</a></div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item custom">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapse8" aria-expanded="false" aria-controls="flush-collapse8">
+                            <i class="fas fa-file-export fa-lg"><a href="#"> <strong> Reports</strong></a></i>
+                        </button>
+                    </div>
+
+                    <div class="accordion-item custom">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapse9" aria-expanded="false" aria-controls="flush-collapse9">
+                            <i class="fas fa-file-alt fa-lg"><a href="#"> Prescription List</a></i>
+                        </button>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapse5" aria-expanded="false" aria-controls="flush-collapse4">
+                            <i class="fas fa-file-invoice fa-lg"> Billing</i>
+                        </button>
+                        <div id="flush-collapse5" class="accordion-collapse collapse"
+                            data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body"><a href="#">Add Bill</a></div><hr class="hr hr-blurry"/>
+                            <div class="accordion-body"><a href="#">Bill List</a></div><hr class="hr hr-blurry"/>
+                            <div class="accordion-body"><a href="#">Invoice</a></div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item custom">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapse10" aria-expanded="false" aria-controls="flush-collapse10">
+                            <i class="fas fa-search fa-lg"><a href="#"> Queries</a></i>
+                        </button>
+                    </div>
+                    <div class="accordion-item custom">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapse11" aria-expanded="false" aria-controls="flush-collapse10">
+                            <i class="fas fa-home fa-lg"><a href="#"> Inventory</a></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- End Sidebar -->
+            <!-- Start Main cintent -->
+            <div class="main-content col-md-10 vh-100">
+                <h1 class="text-warning">Welcome to BlackBirdS World!</h1>
+            </div>
+        </div>
+    </div>
+      <!-- End Main content -->
+      <!-- Start Footer -->
+      <div class="container-fluid ftr text-light align-center">
+        CopyRight &copy 2023 All Rights Reserved.
+    </div>
+    <!-- End Footer -->
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/custom.js"></script>
+</body>
+</html>
