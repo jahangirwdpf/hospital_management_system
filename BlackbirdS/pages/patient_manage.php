@@ -1,4 +1,5 @@
 <?php
+require_once("./../includes/db_conect.php");
 require_once("./../includes/function.php");
 getHeader();
 getSidebar();
@@ -24,7 +25,6 @@ getSidebar();
         </thead>
         <tbody>
             <?php
-                $conn = new mysqli("localhost","root","","bbirdshospital");
                 $sql="SELECT * FROM patient";
                 $q=$conn->query($sql);
                 while ($row=$q->fetch_assoc()){ ?>

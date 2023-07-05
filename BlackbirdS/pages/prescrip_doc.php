@@ -1,4 +1,5 @@
 <?php
+require_once("./../includes/db_conect.php");
 require_once("./../includes/function_doc.php");
 getHeader();
 getSidebar();
@@ -20,7 +21,6 @@ getSidebar();
         </thead>
         <tbody>
             <?php
-                $conn = new mysqli("localhost","root","","bbirdshospital");
                 $sql="SELECT * FROM prescription_doc";
                 $q=$conn->query($sql);
                 while ($row=$q->fetch_assoc()){ ?>

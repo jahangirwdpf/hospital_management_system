@@ -1,4 +1,5 @@
 <?php
+require_once("./../includes/db_conect.php");
 require_once("./../includes/function_pat.php");
 getHeader();
 getSidebar();
@@ -7,7 +8,6 @@ getSidebar();
 <!------------------ Please Start input Here ------------------------------------------->
     <div class="col-md-6 border justify-content-center p-5" style="background-color:white;  color: #144272; border-radius:15px;"><h3 style="border:2px solid DodgerBlue;background-color:#205295; color: white; text-align: center; ">Appointment Create</h3>
       <?php
-        $conn = new mysqli("localhost","root","","bbirdshospital");
         if(isset($_POST['insert'])){
             $depertment = $_POST['depertment']??null;
             $doctor = $_POST['doctor']??null;
@@ -30,8 +30,8 @@ getSidebar();
           
             <div class="form-group">
                 <label for="inputEmail4"><strong> Depertment :</strong></label>
-                  <select class="form-select form-select-sm in mb-1" name="depertment" aria-label=".form-select-sm example">
-                    <option selected>Select Depertment :</option>
+                  <select class="form-select form-select-sm in mb-1" id="select_department" name="depertment" aria-label=".form-select-sm example">
+                    <option selected >Select Depertment :</option>
                         <?php
                           $sql = "SELECT * FROM depertment"; 
                           $result = $conn->query($sql);
@@ -43,31 +43,13 @@ getSidebar();
                   </select>
             <div class="form-group">
                 <label for="inputEmail4"><strong> Doctor Name :</strong></label>
-                  <select class="form-select form-select-sm in mb-1" name="doctor" aria-label=".form-select-sm example">
-                    <option selected> Select Doctor :</option>
-                        <?php
-                          $sql = "SELECT * FROM doctor"; 
-                          $result = $conn->query($sql);
-                          while ($rows = $result->fetch_assoc()){ ?>
-                              <option value= "<?php echo $rows['id'];?>"> 
-                                <?php echo $rows['username'];?>
-                              </option>
-                        <?php } ?>
+                  <select class="form-select form-select-sm in mb-1" name="doctor" id="select_doctor" aria-label=".form-select-sm example">
+                    <option selected> Select Doctor :</option>     
                   </select>
             </div>
             <div class="form-group">
                 <label for="inputZip"><strong> Doctor Fees :</strong></label>
-                  <select class="form-select form-select-sm in mb-1" name="depertment" aria-label=".form-select-sm example">
-                    <option selected>Select DoctorFees :</option>
-                        <?php
-                          $sql = "SELECT * FROM doctor"; 
-                          $result = $conn->query($sql);
-                          while ($rows = $result->fetch_assoc()){ ?>
-                              <option value= "<?php echo $rows['id'];?>"> 
-                                <?php echo $rows['doctorFees'];?>
-                              </option>
-                        <?php } ?>
-                  </select>
+                  <input type="text" disabled id="doctor_fees" class="form-control">
             </div>
           </div>
           <div class="form-row">

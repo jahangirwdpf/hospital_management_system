@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 02, 2023 at 09:17 PM
+-- Generation Time: Jul 04, 2023 at 09:59 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -51,7 +51,7 @@ CREATE TABLE `appointment` (
   `doctor` varchar(50) NOT NULL,
   `doctorFees` int(11) NOT NULL,
   `appDate` date NOT NULL,
-  `appTime` time NOT NULL
+  `appTime` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
@@ -59,7 +59,13 @@ CREATE TABLE `appointment` (
 --
 
 INSERT INTO `appointment` (`app_id`, `Depertment`, `doctor`, `doctorFees`, `appDate`, `appTime`) VALUES
-(1, '1', '', 0, '2023-07-05', '00:00:00');
+(1, '1', '1', 0, '2023-07-10', '2023-07-04 12:50:41'),
+(2, 'Select DoctorFees :', '1', 0, '2023-07-04', '2023-07-04 12:50:38'),
+(3, 'Select DoctorFees :', '1', 0, '2023-07-27', '0000-00-00 00:00:00'),
+(4, '2', '2', 0, '2023-07-20', '0000-00-00 00:00:00'),
+(5, '1', '1', 0, '2023-07-05', '0000-00-00 00:00:00'),
+(6, '3', '3', 0, '2023-07-10', '0000-00-00 00:00:00'),
+(7, '4', '5', 0, '2023-07-20', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -68,12 +74,12 @@ INSERT INTO `appointment` (`app_id`, `Depertment`, `doctor`, `doctorFees`, `appD
 -- (See below for the actual view)
 --
 CREATE TABLE `appointment_doc` (
-`pat_id` int(11)
+`app_id` int(11)
+,`pat_id` int(11)
 ,`username` varchar(20)
 ,`gender` varchar(10)
-,`app_id` int(11)
 ,`appDate` date
-,`appTime` time
+,`appTime` datetime
 );
 
 -- --------------------------------------------------------
@@ -83,10 +89,17 @@ CREATE TABLE `appointment_doc` (
 -- (See below for the actual view)
 --
 CREATE TABLE `appointment_pat` (
-`username` varchar(50)
-,`doctorFees` int(10)
+`app_id` int(11)
+,`Depertment` varchar(50)
+,`doctor` varchar(50)
 ,`appDate` date
-,`appTime` time
+,`appTime` datetime
+,`id` int(11)
+,`username` varchar(50)
+,`password` varchar(50)
+,`email` varchar(50)
+,`depert_id` int(11)
+,`doctorFees` int(10)
 );
 
 -- --------------------------------------------------------
@@ -184,7 +197,9 @@ CREATE TABLE `patient` (
 --
 
 INSERT INTO `patient` (`pat_id`, `username`, `age`, `gender`, `bld_group`, `email`, `contact`, `password`, `user_id`, `bill_id`, `pres_id`) VALUES
-(3, 'Farhana', '30', 'female', 'AB-', 'farhana@gmail.com', '0154789456', 'farhana111', 0, 0, 0);
+(1, 'Farhana', '35', 'female', 'ab-', 'f@gmail.com', '4522542', 'far111', 0, 0, 0),
+(2, 'Mishu', '30', 'male', 'A+', 'm@gmail.com', '4522542', 'm123', 0, 0, 0),
+(3, 'Bristy', '25', 'female', 'B+', 'b@gmail.com', '4522542', 'b111', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -203,8 +218,8 @@ CREATE TABLE `prescription` (
 --
 
 INSERT INTO `prescription` (`id`, `disease`, `prescription`) VALUES
-(1, 'Headache', 'Take Rest & Medicine'),
-(2, 'MM', 'GG');
+(1, 'FatalError', 'Parasitamol'),
+(2, 'Dental Problem', 'Take Medicine:\r\n1. Alatrol-25mg\r\n3. Destin-20mg');
 
 -- --------------------------------------------------------
 
@@ -217,7 +232,7 @@ CREATE TABLE `prescription_doc` (
 ,`username` varchar(20)
 ,`app_id` int(11)
 ,`appDate` date
-,`appTime` time
+,`appTime` datetime
 ,`disease` varchar(250)
 ,`prescription` varchar(1000)
 );
@@ -232,7 +247,7 @@ CREATE TABLE `prescription_pat` (
 `username` varchar(50)
 ,`app_id` int(11)
 ,`appDate` date
-,`appTime` time
+,`appTime` datetime
 ,`disease` varchar(250)
 ,`prescription` varchar(1000)
 );
@@ -286,7 +301,7 @@ INSERT INTO `user` (`id`, `username`, `password`, `role_id`) VALUES
 --
 DROP TABLE IF EXISTS `appointment_doc`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `appointment_doc`  AS SELECT `patient`.`pat_id` AS `pat_id`, `patient`.`username` AS `username`, `patient`.`gender` AS `gender`, `appointment`.`app_id` AS `app_id`, `appointment`.`appDate` AS `appDate`, `appointment`.`appTime` AS `appTime` FROM (`patient` join `appointment`) WHERE `patient`.`pat_id` = `appointment`.`app_id``app_id`  ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `appointment_doc`  AS SELECT `appointment`.`app_id` AS `app_id`, `patient`.`pat_id` AS `pat_id`, `patient`.`username` AS `username`, `patient`.`gender` AS `gender`, `appointment`.`appDate` AS `appDate`, `appointment`.`appTime` AS `appTime` FROM (`patient` join `appointment`) WHERE `appointment`.`app_id` = `patient`.`pat_id``pat_id`  ;
 
 -- --------------------------------------------------------
 
@@ -295,7 +310,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `appointment_pat`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `appointment_pat`  AS SELECT `doctor`.`username` AS `username`, `doctor`.`doctorFees` AS `doctorFees`, `appointment`.`appDate` AS `appDate`, `appointment`.`appTime` AS `appTime` FROM (`doctor` join `appointment`) WHERE `doctor`.`id` = `appointment`.`app_id``app_id`  ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `appointment_pat`  AS SELECT `appointment`.`app_id` AS `app_id`, `appointment`.`Depertment` AS `Depertment`, `appointment`.`doctor` AS `doctor`, `appointment`.`appDate` AS `appDate`, `appointment`.`appTime` AS `appTime`, `doctor`.`id` AS `id`, `doctor`.`username` AS `username`, `doctor`.`password` AS `password`, `doctor`.`email` AS `email`, `doctor`.`depert_id` AS `depert_id`, `doctor`.`doctorFees` AS `doctorFees` FROM (`appointment` join `doctor` on(`appointment`.`doctor` = `doctor`.`id`))  ;
 
 -- --------------------------------------------------------
 
@@ -304,7 +319,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `prescription_doc`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `prescription_doc`  AS SELECT `patient`.`pat_id` AS `pat_id`, `patient`.`username` AS `username`, `appointment`.`app_id` AS `app_id`, `appointment`.`appDate` AS `appDate`, `appointment`.`appTime` AS `appTime`, `prescription`.`disease` AS `disease`, `prescription`.`prescription` AS `prescription` FROM ((`patient` join `appointment`) join `prescription`) WHERE `patient`.`pat_id` = `prescription`.`id``id`  ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `prescription_doc`  AS SELECT `patient`.`pat_id` AS `pat_id`, `patient`.`username` AS `username`, `appointment`.`app_id` AS `app_id`, `appointment`.`appDate` AS `appDate`, `appointment`.`appTime` AS `appTime`, `prescription`.`disease` AS `disease`, `prescription`.`prescription` AS `prescription` FROM ((`patient` join `appointment`) join `prescription`) WHERE `appointment`.`app_id` = `prescription`.`id` = `patient`.`pat_id``pat_id`  ;
 
 -- --------------------------------------------------------
 
@@ -313,7 +328,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `prescription_pat`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `prescription_pat`  AS SELECT `doctor`.`username` AS `username`, `appointment`.`app_id` AS `app_id`, `appointment`.`appDate` AS `appDate`, `appointment`.`appTime` AS `appTime`, `prescription`.`disease` AS `disease`, `prescription`.`prescription` AS `prescription` FROM ((`doctor` join `appointment`) join `prescription`) WHERE `doctor`.`id` = `appointment`.`app_id``app_id`  ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `prescription_pat`  AS SELECT `doctor`.`username` AS `username`, `appointment`.`app_id` AS `app_id`, `appointment`.`appDate` AS `appDate`, `appointment`.`appTime` AS `appTime`, `prescription`.`disease` AS `disease`, `prescription`.`prescription` AS `prescription` FROM ((`doctor` join `appointment`) join `prescription`) WHERE `appointment`.`app_id` = `prescription`.`id` = `doctor`.`id``id`  ;
 
 --
 -- Indexes for dumped tables
@@ -377,7 +392,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `app_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `app_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `bill`
@@ -401,41 +416,13 @@ ALTER TABLE `doctor`
 -- AUTO_INCREMENT for table `patient`
 --
 ALTER TABLE `patient`
-  MODIFY `pat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `pat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `prescription`
 --
 ALTER TABLE `prescription`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `role`
---
-ALTER TABLE `role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `depertment`
---
-ALTER TABLE `depertment`
-  ADD CONSTRAINT `depertment_ibfk_1` FOREIGN KEY (`id`) REFERENCES `doctor` (`depert_id`);
-
---
--- Constraints for table `user`
---
-ALTER TABLE `user`
-  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`);
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

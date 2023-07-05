@@ -1,4 +1,5 @@
 <?php
+require_once("./../includes/db_conect.php");
 require_once("./../includes/function_pat.php");
 getHeader();
 getSidebar();
@@ -19,8 +20,7 @@ getSidebar();
         </thead>
         <tbody>
             <?php
-                $conn = new mysqli("localhost","root","","bbirdshospital");
-                $sql="SELECT * FROM appointment_pat natural join doctor";
+                $sql="SELECT * FROM appointment_pat ORDER BY doctor DESC";
                 $q=$conn->query($sql);
                 while ($row=$q->fetch_assoc()){ ?>
                 <tr>

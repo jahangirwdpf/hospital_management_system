@@ -1,13 +1,12 @@
 <?php
+require_once("./../includes/db_conect.php");
 require_once("./../includes/function.php");
 getHeader();
-getSidebar();
 ?>
-<div class="main-content col-md-10 vh-100 justify-content-center d-flex p-3" style="background-color:#a8bee5;">
+<div class="main-content col-md-12 vh-100 justify-content-center d-flex p-3" style="background-color:#a8bee5;">
 <!------------------ Please Start input Here ------------------------------------------->
     <div class="col-md-6 border justify-content-center p-5" style="background-color:white;  color: #144272; border-radius:15px;"><h3 style="border-radius:6px; border:2px solid DodgerBlue;background-color:#205295;color: white; text-align: center;">Patient Registration</h3>
       <?php
-        $conn = new mysqli("localhost","root","","bbirdshospital");
           if(isset($_POST['insert'])){
                 $name = $_POST['username']??null;
                 $age = $_POST['age']??null;

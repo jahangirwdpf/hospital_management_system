@@ -1,9 +1,9 @@
 <?php
+require_once("./../includes/db_conect.php");
 require_once("./../includes/function.php");
 getHeader();
 
     session_start(); //Start the session.
-        $conn = new mysqli("localhost","root","","bbirdshospital");
           if(isset($_POST['login'])){
                 $email = $_POST['email']??null;
                 $password = $_POST['password']??null;

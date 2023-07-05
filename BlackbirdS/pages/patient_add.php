@@ -1,4 +1,5 @@
 <?php
+require_once("./../includes/db_conect.php");
 require_once("./../includes/function.php");
 getHeader();
 getSidebar();
@@ -7,7 +8,6 @@ getSidebar();
 <!------------------ Please Start input Here ------------------------------------------->
     <div class="col-md-6 border justify-content-center p-5" style="background-color:white;  color: #144272; border-radius:15px;"><h3 style="border-radius:10px; border:2px solid DodgerBlue;background-color:#205295; color: white; text-align: center; ">Patient Registration</h3>
       <?php
-        $conn = new mysqli("localhost","root","","bbirdshospital");
         if(isset($_POST['insert'])){
                 $name = $_POST['username']??null;
                 $age = $_POST['age']??null;

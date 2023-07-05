@@ -1,4 +1,5 @@
 <?php
+require_once("./../includes/db_conect.php");
 require_once("./../includes/function_doc.php");
 getHeader();
 getSidebar();
@@ -7,7 +8,6 @@ getSidebar();
 <!------------------ Please Start input Here ------------------------------------------->
     <div class="col-md-9 border justify-content-center p-5" style="background-color:white;  color: #144272; border-radius:15px;"><h3 style="border:2px solid DodgerBlue;background-color:#205295; color: white; text-align: center; ">Create Prescription</h3>
       <?php
-        $conn = new mysqli("localhost","root","","bbirdshospital");
         if(isset($_POST['insert'])){
             $disease = $_POST['disease']??null;
             $prescription = $_POST['prescription']??null;

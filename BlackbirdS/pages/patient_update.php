@@ -1,5 +1,5 @@
 <?php
-$conn = new mysqli("localhost","root","","bbirdshospital");
+require_once("./../includes/db_conect.php");
 
 $id = $_GET['d'];
 $s = "SELECT * FROM patient WHERE pat_id = $id";
