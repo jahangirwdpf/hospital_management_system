@@ -33,7 +33,7 @@ getSidebar();
                     <td><?=$row["appDate"]?></td>
                     <td><?=$row["appTime"]?></td>
                     <td><a href="" class="btn btn-danger btn-sm">Cancel</a></td>
-                    <td><a href="prescrip.php" class="btn btn-success btn-sm">Prescribe</a></td> 
+                    <td style="text-align: center;"><a href="doc_app_cancel.php?=<?=$row['app_id']?>" class="btn btn-danger btn-sm">Cancel</a></td> 
                 </tr>
             <?php } ?>
         </tbody>

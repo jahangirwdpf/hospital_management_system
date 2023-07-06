@@ -28,7 +28,7 @@ getSidebar();
                     <td><?=$row["doctorFees"]?></td>
                     <td><?=$row["appDate"]?></td>
                     <td><?=$row["appTime"]?></td>
-                    <td><a href="" class="btn btn-danger btn-sm">Cancel</a></td>
+                    <td style="text-align: center;"><a href="pat_app_cancel.php?c=<?=$row['app_id']?>" class="btn btn-danger btn-sm">Cancel</a></td>
                 </tr>
             <?php } ?>
         </tbody>
